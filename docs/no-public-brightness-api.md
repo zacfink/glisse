@@ -111,6 +111,6 @@ I ended up here writing [Glissé](https://github.com/helgafinn/glisse), which pu
 brew install --cask helgafinn/tap/glisse
 ```
 
-The build is ad-hoc signed rather than notarised, because notarisation needs a paid Apple Developer account this project does not have. After Homebrew installs it, Gatekeeper may require you to right-click Glissé in `/Applications` and choose **Open** on first launch. One consequence worth knowing before you install: because the signature is ad-hoc, macOS forgets the Accessibility grant on each upgrade and you have to give it again.
+The build is ad-hoc signed rather than notarised, because notarisation needs a paid Apple Developer account this project does not have. macOS blocks the first launch as a result: allow it once under **System Settings → Privacy & Security → Open Anyway**, or run `xattr -dr com.apple.quarantine "/Applications/Glissé.app"`. On macOS 15 and later, right-clicking the app no longer bypasses the block. One further consequence: because the signature is ad-hoc, macOS forgets the Accessibility grant on each upgrade and you have to give it again.
 
 Every private symbol it touches is documented in the README with the reason no public alternative exists, including the parts that are unverified — the Intel paths are written but have only been tested on Apple Silicon. If you only want the technique rather than the app, `Sources/GlissePrivate/` is the interesting directory.

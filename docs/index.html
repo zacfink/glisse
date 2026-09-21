@@ -329,6 +329,22 @@
       </div>
 
       <p class="lede">Or take the DMG from the <a href="https://github.com/helgafinn/glisse/releases">releases page</a>. MIT licensed. No trial, no licence key, no account, no telemetry, no analytics, and no network code of any kind — the app makes no outbound connection, ever.</p>
+
+      <div class="firstrun">
+        <h3 class="h3">First launch: macOS will block it once</h3>
+        <p>Glissé is not notarised, so the first time you open it macOS says <em>“Glissé” was blocked to protect your Mac</em>. That is expected, and it takes one step to allow. On macOS&nbsp;15 and later, right-clicking the app no longer works — Apple removed that shortcut.</p>
+        <ol class="steps">
+          <li>Open Glissé once and click <b>Done</b> on the warning.</li>
+          <li>Go to <b>System&nbsp;Settings → Privacy&nbsp;&amp;&nbsp;Security</b>, scroll to the <b>Security</b> section at the bottom.</li>
+          <li>Next to “Glissé was blocked…”, click <b>Open&nbsp;Anyway</b> and authenticate.</li>
+          <li>Open Glissé again. It launches from then on.</li>
+        </ol>
+        <p>Prefer the terminal? One command does the same thing:</p>
+        <div class="cmd">
+          <code id="unblockcmd">xattr -dr com.apple.quarantine "/Applications/Glissé.app"</code>
+          <button class="btn" data-copy='xattr -dr com.apple.quarantine "/Applications/Glissé.app"' data-for="unblockcmd">Copy</button>
+        </div>
+      </div>
       <p class="lede" style="margin-top:1rem"><strong>The main feature needs no permission at all.</strong> Sliding, volume and brightness work the first time you launch it, before you have granted anything. Accessibility is asked for only to draw the system HUD and for three optional extras, and both event taps it installs are listen&#8209;only, so they cannot swallow or alter a keystroke.</p>
     </div>
   </section>
@@ -339,7 +355,7 @@
       <span class="pill" style="background:var(--coral);color:var(--paper)">The honest part</span>
       <h2 class="h2" style="margin:1.25rem 0 2.25rem">What is not<br>finished yet.</h2>
       <ul class="honest">
-        <li><b>Ad-hoc signed, not notarised</b><span>Notarising needs a paid Apple Developer account this project does not have. Homebrew can install Glissé normally, but Gatekeeper may require you to right-click the app and choose Open on first launch. Because each release is ad-hoc signed, macOS forgets the Accessibility permission on every upgrade, so you grant it again.</span></li>
+        <li><b>Ad-hoc signed, not notarised</b><span>Notarising needs a paid Apple Developer account this project does not have, so macOS blocks the first launch and you have to allow it once in System Settings — see <a href="#install">First launch</a>. Because each release is ad-hoc signed, macOS also forgets the Accessibility permission on every upgrade, so you grant it again.</span></li>
         <li><b>No App Store version, and there cannot be one</b><span>Reading raw trackpad contacts, drawing the system HUD and talking to a monitor over I2C have no entitlements available. This is a program you choose to trust, and it should say so rather than implying a review vouched for it.</span></li>
         <li><b>External monitor brightness is unverified</b><span>The DDC path is written and the reply parser follows the spec, but no second display was available to test it on.</span></li>
         <li><b>Intel and Magic Trackpad are unverified</b><span>Those code paths exist and compile. Nobody has run them on that hardware yet.</span></li>

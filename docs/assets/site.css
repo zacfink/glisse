@@ -393,6 +393,28 @@ section { position: relative; padding-block: clamp(4rem, 10vh, 8rem); }
 
 /* ---------- install ---------- */
 
+/* First-launch block: the app is not notarised, so this step is unavoidable
+   and needs to be impossible to miss rather than buried in a footnote. */
+.firstrun {
+  margin-top: 2rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--paper);
+  border: var(--border);
+  border-radius: 1.1rem;
+  box-shadow: var(--shadow);
+}
+.firstrun h3 { margin-bottom: 0.75rem; }
+.firstrun p { max-width: 60ch; }
+.firstrun .cmd { margin-block: 1rem 0; }
+.steps {
+  margin: 0 0 1.1em;
+  padding-left: 1.35rem;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 60ch;
+}
+.steps li { padding-left: 0.2rem; }
+
 .cmd {
   display: flex; align-items: center; gap: 1rem;
   padding: 1.1rem 1.25rem;
@@ -403,6 +425,27 @@ section { position: relative; padding-block: clamp(4rem, 10vh, 8rem); }
 }
 .cmd code { white-space: nowrap; font-size: 0.875rem; }
 .cmd button { flex-shrink: 0; margin-left: auto; }
+
+/* On a phone, a nowrap command scrolls the Copy button out of sight, which
+   hides the one control that matters. Wrap the command and give Copy its own
+   full-width row instead. */
+@media (max-width: 48rem) {
+  .cmd {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .cmd code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .cmd button {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 /* ---------- honest list ---------- */
 

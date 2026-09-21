@@ -167,12 +167,29 @@ No certificates, profiles or credentials are stored in this repository, and
 ### Gatekeeper, for unsigned builds
 
 An ad-hoc signed app you built yourself runs without complaint on the machine
-that built it. If you copy it to another Mac, Gatekeeper will block it because it
-is not notarised. Right-click → **Open**, then confirm, or:
+that built it, because a locally built app is never quarantined. Anywhere else —
+a downloaded DMG, a Homebrew install, a copy handed to a friend — Gatekeeper
+blocks the first launch, because the release is ad-hoc signed and not notarised:
 
-```bash
-xattr -d com.apple.quarantine /Applications/Glissé.app
+```text
+"Glissé" was blocked to protect your Mac.
 ```
+
+**On macOS 15 (Sequoia) and later, Control-clicking the app and choosing Open no
+longer bypasses this.** Apple removed that path. There are two ways through:
+
+1. Open the app once and dismiss the warning, then go to **System Settings →
+   Privacy & Security**, scroll to **Security**, and click **Open Anyway** next
+   to the Glissé entry. Authenticate, then open the app again.
+2. Or clear the quarantine attribute directly:
+
+   ```bash
+   xattr -dr com.apple.quarantine "/Applications/Glissé.app"
+   ```
+
+Both are the user consciously choosing to trust an unnotarised binary. The only
+way to remove the prompt entirely is notarisation, which needs a paid Apple
+Developer account — see [Signing](#signing).
 
 ---
 
@@ -572,6 +589,13 @@ Now the gaps:
 ---
 
 ## Troubleshooting
+
+**macOS says Glissé "was blocked to protect your Mac" and will not open.**
+Expected on any Mac that did not build it: the release is ad-hoc signed and not
+notarised. Open **System Settings → Privacy & Security**, scroll to **Security**,
+click **Open Anyway** beside the Glissé entry, authenticate, then open the app
+again. Or run `xattr -dr com.apple.quarantine "/Applications/Glissé.app"`.
+Control-clicking the app and choosing **Open** stopped working in macOS 15.
 
 **Nothing happens when I slide.**
 Open **Diagnostics…**. Check, in order: `active source` is not `none`;
