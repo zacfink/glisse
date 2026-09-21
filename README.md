@@ -597,6 +597,26 @@ click **Open Anyway** beside the Glissé entry, authenticate, then open the app
 again. Or run `xattr -dr com.apple.quarantine "/Applications/Glissé.app"`.
 Control-clicking the app and choosing **Open** stopped working in macOS 15.
 
+**Sliding works, but no brightness/volume HUD appears.**
+Expected on macOS 26 and later without Accessibility. Glissé draws no HUD of its
+own; it asks macOS to draw the real one. The private OSD route that worked on
+macOS 13–15 does nothing on 26+, so the only remaining route is synthesising the
+machine's own media keys — and posting events requires **Accessibility**. Grant
+it (macOS 27: **System Settings → Device Control and Data Access →
+Accessibility**; macOS 13–26: **System Settings → Privacy & Security →
+Accessibility**), and the HUD appears without restarting the app. Also check
+**macOS On-Screen Display** is ticked in the menu. Confirm the route with:
+
+```bash
+/Applications/Glissé.app/Contents/MacOS/Glisse --hudtest
+```
+
+If the Accessibility toggle refuses to stick, reset the entry and grant it again:
+
+```bash
+tccutil reset Accessibility xyz.glisse.Glisse
+```
+
 **Nothing happens when I slide.**
 Open **Diagnostics…**. Check, in order: `active source` is not `none`;
 `devices` is at least 1; `MTTouch layout` is `validated` or `assumed`, not

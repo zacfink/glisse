@@ -339,6 +339,7 @@
           <li>Next to “Glissé was blocked…”, click <b>Open&nbsp;Anyway</b> and authenticate.</li>
           <li>Open Glissé again. It launches from then on.</li>
         </ol>
+        <p><b>Then grant Accessibility, or you get no HUD.</b> Glissé draws no display of its own — it asks macOS to draw the real one, and on macOS&nbsp;26 and later that needs Accessibility. Sliding, brightness and volume still work without it; the on-screen display simply will not appear. Grant it in <b>System&nbsp;Settings → Privacy&nbsp;&amp;&nbsp;Security → Accessibility</b>, named <b>Device&nbsp;Control and Data&nbsp;Access → Accessibility</b> on macOS&nbsp;27.</p>
         <p>Prefer the terminal? One command does the same thing:</p>
         <div class="cmd">
           <code id="unblockcmd">xattr -dr com.apple.quarantine "/Applications/Glissé.app"</code>
