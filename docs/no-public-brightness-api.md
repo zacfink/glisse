@@ -105,11 +105,7 @@ That trade is only worth making when the feature genuinely cannot exist otherwis
 
 I ended up here writing [Glissé](https://github.com/helgafinn/glisse), which puts brightness and volume on the trackpad's left and right edges — glide the left edge to dim, the right to change volume, with the real system HUD rather than an imitation of it.
 
-**It is free and open source.** MIT licensed, no payment, no trial, no licence key, no accounts, no telemetry, no analytics, no network code of any kind. Install it with:
-
-```bash
-brew install --cask helgafinn/tap/glisse
-```
+**It is free and open source.** MIT licensed, no payment, no trial, no licence key, no accounts, no telemetry, no analytics, no network code of any kind. Download the DMG from the [releases page](https://github.com/helgafinn/glisse/releases/latest) and drag it into Applications.
 
 The build is ad-hoc signed rather than notarised, because notarisation needs a paid Apple Developer account this project does not have. macOS blocks the first launch as a result: allow it once under **System Settings → Privacy & Security → Open Anyway**, or run `xattr -dr com.apple.quarantine "/Applications/Glissé.app"`. On macOS 15 and later, right-clicking the app no longer bypasses the block. One further consequence: because the signature is ad-hoc, macOS forgets the Accessibility grant on each upgrade and you have to give it again.
 

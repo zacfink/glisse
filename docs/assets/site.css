@@ -393,6 +393,28 @@ section { position: relative; padding-block: clamp(4rem, 10vh, 8rem); }
 
 /* ---------- install ---------- */
 
+/* The DMG is the only install path, so the download is the primary action
+   rather than one option among several. */
+.download {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-block: 1.75rem;
+}
+.download .btn {
+  font-size: 1.0625rem;
+  padding: 1rem 1.75rem;
+}
+.download-meta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
 /* First-launch block: the app is not notarised, so this step is unavoidable
    and needs to be impossible to miss rather than buried in a footnote. */
 .firstrun {

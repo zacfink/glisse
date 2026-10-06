@@ -124,9 +124,7 @@ if (!set) { /* feature unavailable, app still runs */ }</code></pre>
 
   <p>I ended up here writing <a href="https://github.com/helgafinn/glisse">Glissé</a>, which puts brightness and volume on the trackpad's left and right edges — glide the left edge to dim, the right to change volume, with the real system HUD rather than an imitation of it.</p>
 
-  <p><strong>It is free and open source.</strong> MIT licensed, no payment, no trial, no licence key, no accounts, no telemetry, no analytics, no network code of any kind. Install it with:</p>
-
-<pre><code>brew install --cask helgafinn/tap/glisse</code></pre>
+  <p><strong>It is free and open source.</strong> MIT licensed, no payment, no trial, no licence key, no accounts, no telemetry, no analytics, no network code of any kind. Download the DMG from the <a href="https://github.com/helgafinn/glisse/releases/latest">releases page</a> and drag it into Applications.</p>
 
   <p>The build is ad-hoc signed rather than notarised, because notarisation needs a paid Apple Developer account this project does not have. macOS blocks the first launch as a result: allow it once under <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>, or run <code>xattr -dr com.apple.quarantine "/Applications/Glissé.app"</code>. On macOS 15 and later, right-clicking the app no longer bypasses the block. One further consequence: because the signature is ad-hoc, macOS forgets the Accessibility grant on each upgrade and you have to give it again.</p>
 
