@@ -40,6 +40,7 @@ public final class AppCoordinator: MenuActionHandling {
     private let mediaKeys = MediaKeyController()
     private let hud: HUDCoordinator
     private let haptics: HapticFeedbackService
+    private var claudeDone: ClaudeDoneWatcher?
     private let cursor = CursorController()
     private let middleClick = MiddleClickSynthesizer()
 
@@ -165,6 +166,11 @@ public final class AppCoordinator: MenuActionHandling {
         // 7b. Haptics: MTActuator is addressed by multitouch device id, so it can
         //     only be opened once devices are enumerated.
         prepareHaptics()
+
+        // 7c. Tap the trackpad when a Claude Code task finishes (zacfink fork).
+        let haptics = self.haptics
+        claudeDone = ClaudeDoneWatcher { haptics.claudeDone() }
+        claudeDone?.start()
 
         // 8. Keyboard: only when it can do something useful.
         startKeyboardMonitorIfNeeded()

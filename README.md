@@ -1,5 +1,7 @@
 # Glissé
 
+> **This fork (zacfink/glisse):** the trackpad taps twice when a Claude Code task finishes, so you feel it under your finger without looking. It reads `~/.claude-status/status.json`, written by the [Claude Status](https://github.com/zacfink/claude-status) hook, and follows Glisse's haptics on/off setting. Everything else is upstream [helgafinn/glisse](https://github.com/helgafinn/glisse).
+
 A native macOS menu-bar utility that turns the vertical edges of your trackpad
 into invisible sliders.
 

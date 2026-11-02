@@ -225,6 +225,19 @@ public final class HapticFeedbackService: @unchecked Sendable {
         fire(strength)
     }
 
+    /// A Claude Code task finished: two firm taps, so it can't be mistaken for
+    /// a slider detent or an end stop. Follows the haptics on/off setting.
+    public func claudeDone() {
+        lock.lock()
+        let enabled = _isEnabled
+        lock.unlock()
+        guard enabled else { return }
+        fireLimit()
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.12) { [weak self] in
+            self?.fireLimit()
+        }
+    }
+
     // MARK: Emission
 
     private func fire(_ strength: HapticStrength) {
