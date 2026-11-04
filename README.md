@@ -1,6 +1,10 @@
 # Glissé
 
-> **This fork (zacfink/glisse):** the trackpad taps twice when a Claude Code task finishes, so you feel it under your finger without looking. It reads `~/.claude-status/status.json`, written by the [Claude Status](https://github.com/zacfink/claude-status) hook, and follows Glisse's haptics on/off setting. Everything else is upstream [helgafinn/glisse](https://github.com/helgafinn/glisse).
+> **This fork (zacfink/glisse)** adds one thing to upstream [helgafinn/glisse](https://github.com/helgafinn/glisse): **the trackpad taps twice when a Claude Code task finishes**, so you feel it under your finger without looking at the terminal. Everything else is upstream's, with credit to its author.
+>
+> - It watches `~/.claude-status/status.json` (polled once a second), written by the [Claude Status](https://github.com/zacfink/claude-status) hook. A tap fires when `state` goes from `running`/`waiting` to `done`; a `done` already on disk at launch stays silent.
+> - It follows Glisse's existing haptics on/off setting. Without the hook installed it does nothing.
+> - **Install:** this fork publishes no prebuilt app, so build it (Xcode command-line tools, macOS 14+): `make release && cp -R dist/Glissé.app /Applications/`, then open it. Details in [Installing](#installing).
 
 A native macOS menu-bar utility that turns the vertical edges of your trackpad
 into invisible sliders.

@@ -200,6 +200,7 @@ public final class AppCoordinator: MenuActionHandling {
 
         // Order matters: stop producing input, then release anything that alters
         // system state, then tear down observers.
+        claudeDone?.stop()
         trackpadManager.stop()
         keyboardMonitor.stop()
         audioObserver.stop()
